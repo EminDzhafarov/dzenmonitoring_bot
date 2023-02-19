@@ -18,7 +18,7 @@ HOUR = 0
 MIN = 0 #ex: use 7 not 07
 </code>
 
-You can get chat id in Telegram web version. Add -100 before the code from the link
+You can get chat id in Telegram web version. Add -100 before the id from the link
 
 https://web.telegram.org/k/#- !your_chat_id!
 
