@@ -5,7 +5,7 @@ DzenMonitoring - is a Telegram bot for receiving daily mentions of a topic of in
 
 <code>pip3 install -r requirements.txt</code>
 
-Install Google Chrome and ChromeDriver on your VPS
+<a href="https://skolo.online/documents/webscrapping/#step-3-test-installation">Install Google Chrome and ChromeDriver on your VPS</a>
 
 <h2>Setup Bot</h2>
 
