@@ -23,6 +23,7 @@ def parser():
     date = getYesterday()
     options = webdriver.ChromeOptions()
     options.add_argument('headless') #Turn on the mode without launching Chrome
+    options.add_argument('--no-sandbox')
     browser = webdriver.Chrome(options=options)
     browser.get(f"https://dzen.ru/news/search?issue_tld=ru&text={THEME}+date%3A{date}")
 
