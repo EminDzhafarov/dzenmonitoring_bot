@@ -12,7 +12,7 @@ bot = telebot.TeleBot(API_TOKEN)
 df = pd.DataFrame(columns=['Заголовок', 'Ссылка'])
 
 def getYesterday():
-    """Get a"""
+    """Get the date that we insert into the link"""
     today = datetime.date.today()
     oneday = datetime.timedelta(days=1)
     yesterday = (today - oneday)
@@ -34,7 +34,7 @@ def parser():
 
     try:
         for i in range(100):
-            df.loc[len(df.index)] = [headings[i].text, links[i].get_attribute("href")]
+            df.loc[len(df.index)] = [headings[i].text, links[i].get_attribute("href")] #Packing everything into a table
     except IndexError:
         pass
 
