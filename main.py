@@ -32,11 +32,10 @@ def parser():
     except NoSuchElementException:
         pass
 
-    try:
-        for i in range(100):
-            df.loc[len(df.index)] = [headings[i].text, links[i].get_attribute("href")] #Packing everything into a table
-    except IndexError:
-        pass
+
+    for i in range(len(headings)):
+        df.loc[len(df.index)] = [headings[i].text, links[i].get_attribute("href")] #Packing everything into a table
+
 
     browser.quit()
     df.to_csv('news.csv')
