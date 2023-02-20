@@ -20,6 +20,8 @@ def getYesterday():
 
 def parser():
     """The function parses the dzen.ru news page for a date before today"""
+    global headings
+    global links
     date = getYesterday()
     options = webdriver.ChromeOptions()
     options.add_argument('headless') #Turn on the mode without launching Chrome
@@ -33,19 +35,19 @@ def parser():
     except NoSuchElementException:
         pass
 
-
     for i in range(len(headings)):
         df.loc[len(df.index)] = [headings[i].text, links[i].get_attribute("href")] #Packing everything into a table
 
-
-    browser.quit()
     df.to_csv('news.csv')
 
 while True:
     now = datetime.datetime.now()
     if now.hour == HOUR and now.minute == MIN: #Hours and minutes from settings.py
         parser()
+        for i in range(len(headings)):
+            bot.send_message(CHAT_ID, f'{headings[i].text}\n{links[i].get_attribute("href")}')
         bot.send_document(chat_id=CHAT_ID, document=open('news.csv', 'rb'))
         time.sleep(60) #Don't let the bot spam for a full minute
 
+browser.quit()
 bot.polling(none_stop=True)
