@@ -5,6 +5,7 @@ import datetime
 import pandas as pd
 import telebot
 import time
+import os
 from settings import *
 
 bot = telebot.TeleBot(API_TOKEN)
@@ -38,7 +39,7 @@ def parser():
     for i in range(len(headings)):
         df.loc[len(df.index)] = [headings[i].text, links[i].get_attribute("href")] #Packing everything into a table
 
-    df.to_csv('news.csv')
+    df.to_csv('news.csv', index=False, encoding="utf-8")
 
 while True:
     now = datetime.datetime.now()
@@ -47,7 +48,10 @@ while True:
         for i in range(len(headings)):
             bot.send_message(CHAT_ID, f'{headings[i].text}\n{links[i].get_attribute("href")}')
         bot.send_document(chat_id=CHAT_ID, document=open('news.csv', 'rb'))
+        os.remove('news.csv')
         time.sleep(60) #Don't let the bot spam for a full minute
+
+
 
 browser.quit()
 bot.polling(none_stop=True)
